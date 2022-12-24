@@ -11,18 +11,24 @@ const App = () => {
     const [index, setIndex] = useState(0)
     const [items, setItems] = useState<IConfigItem[]>([])
     const [database, setDatabase] = useState<IDatabase>({name: "", table: ""})
-    const [binary, setBinary] = useState("")
+    const [binary, setBinary] = useState(() => {
+        const hash = localStorage.getItem("hashcode") || ""
+        handlePasteBinary(hash)
+        return hash
+    })
 
+    // update the hash code on item or database change
     useEffect(() => {
         const json = {
             items: items,
             database: database
         }
-        const bin = Buffer.from(JSON.stringify(json)).toString("base64");
+        const bin = Buffer.from(JSON.stringify(json)).toString("base64")
         setBinary(bin)
-        console.log(items)
+        localStorage.setItem("hashcode", bin)
     }, [items, database])
 
+    // handler for custom hash code input
     function handlePasteBinary(hash: string) {
         const json = JSON.parse(Buffer.from(hash, "base64").toString())
         setDatabase(json.database)
