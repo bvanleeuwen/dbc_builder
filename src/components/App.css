@@ -1,0 +1,71 @@
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: #131516;
+  color: #d8d4cf;
+}
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body {
+  height: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 50px;
+}
+
+.container {
+  height: 100%;
+}
+
+.inputs {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.input_name {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #055fd3;
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 1px;
+  padding-left: 5px;
+}
+
+.input_value {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #d8d4cf;
+  font-size: 15px;
+  padding: 0 10px;
+  background: #1d2021;
+  border: none;
+}

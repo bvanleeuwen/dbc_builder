@@ -1,0 +1,54 @@
+.preview {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.code_block {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.code_block_header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 0 10px 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.code_block_button {
+    font-size: 10px;
+    padding: 5px;
+    margin-left: 10px;
+    background: #4c4c62;
+    border-radius: 5px;
+    transition: all 100ms ease-in-out;
+}
+
+.code_block_button:hover {
+    cursor: pointer;
+    background: #303093;
+}
+
+.code_block code {
+    height: 100%;
+    width: 100%;
+    background: #1d2021;
+    border-radius: 5px;
+    padding: 12px;
+    font-family: "Cascadia Mono", sans-serif;
+    font-size: 13px;
+    line-height: calc((13 + 4) / 13);
+    white-space: pre-line; /* allow for multiline (\n) */
+    /*overflow: scroll;*/
+}
