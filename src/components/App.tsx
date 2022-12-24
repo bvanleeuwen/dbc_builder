@@ -73,6 +73,10 @@ const App = () => {
                 </div>
 
             </div>
+            <div className={"attribution"}>
+                <a href="https://www.flaticon.com/free-icons/database" title="database icons">Database icons created by srip - Flaticon</a>
+                <a href="https://www.flaticon.com/free-icons/delete" title="delete icons">Delete icons created by Ilham Fitrotul Hayat - Flaticon</a>
+            </div>
         </div>
     );
 }

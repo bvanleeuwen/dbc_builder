@@ -42,6 +42,12 @@
     background: #490b0b;
 }
 
+.item_delete img {
+    height: 45%;
+    width: 45%;
+    filter: invert();
+}
+
 .add {
     font-weight: bold;
     background: #246c24;

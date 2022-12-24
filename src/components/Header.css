@@ -15,7 +15,7 @@
 
 .tab:hover {
     cursor: pointer;
-    background: #055fd3;
+    background: #2387FF;
 }
 
 .tab:first-child {
@@ -27,7 +27,7 @@
 }
 
 .selected {
-    background: #055fd3;
+    background: #2387FF;
 }
 
 .tab span {

@@ -1,4 +1,5 @@
 import './Table.css';
+import image from '../delete.png'
 
 export interface IConfigEvents {
     handleNameUpdate: (id: number, name: string) => void
@@ -31,7 +32,7 @@ const Row = (row : IConfigItem & IConfigEvents) => {
                     className={"item_delete"}
                     onClick={() => row.handleDelete(row.id)}
                 >
-                x
+                <img src={image} alt={"trashcan"} />
             </span>
         </form>
     )
