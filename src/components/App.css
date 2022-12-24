@@ -20,12 +20,14 @@ html {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
   column-gap: 50px;
 }
 
 .container {
   height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .inputs {

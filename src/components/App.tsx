@@ -14,15 +14,13 @@ const App = () => {
     const [binary, setBinary] = useState("")
 
     useEffect(() => {
-        if (items.length === 0) {
-            return
-        }
         const json = {
             items: items,
             database: database
         }
         const bin = Buffer.from(JSON.stringify(json)).toString("base64");
         setBinary(bin)
+        console.log(items)
     }, [items, database])
 
     function handlePasteBinary(hash: string) {
@@ -43,7 +41,7 @@ const App = () => {
                         <div className={"wrapper"}>
                             <span className={"input_name"}>Database</span>
                             <span className={"input_name"}>Table</span>
-                            <span className={"input_name"}>Hashcode</span>
+                            <span className={"input_name"}>Share code</span>
                         </div>
                         <form className={"wrapper"}>
                             <input
@@ -61,7 +59,7 @@ const App = () => {
                             <input
                                 className={"input_value"}
                                 value={binary}
-                                placeholder={"Hashcode"}
+                                placeholder={"Share code"}
                                 onChange={e => handlePasteBinary(e.target.value)}
                             />
                         </form>

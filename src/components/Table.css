@@ -1,6 +1,5 @@
 .table {
-    height: 90%;
-    max-height: 90%;
+    flex: 1; /* fill remaining space */
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -10,7 +9,7 @@
 }
 
 .item {
-    height: 40px;
+    min-height: 40px;
     width: 100%;
     display: flex;
     justify-content: center;
