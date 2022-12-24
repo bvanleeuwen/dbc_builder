@@ -50,5 +50,5 @@
     font-size: 13px;
     line-height: calc((13 + 4) / 13);
     white-space: pre-line; /* allow for multiline (\n) */
-    /*overflow: scroll;*/
+    overflow-y: auto;
 }

@@ -9,27 +9,14 @@ global.Buffer = global.Buffer || require('buffer').Buffer
 const App = () => {
 
     const [index, setIndex] = useState(0)
-    const [items, setItems] = useState<IConfigItem[]>([
-        {
-            id: 1,
-            name: "mc_url",
-            values: ["mc_url1", "mc_url2", "mc_url3", "mc_url4"]
-        },
-        {
-            id: 2,
-            name: "graph_url",
-            values: ["graph_url1", "graph_url2", "graph_url3", "graph_url4"]
-        },
-        {
-            id: 3,
-            name: "other_url",
-            values: ["other_url1", "other_url2", "other_url3", "other_url4"]
-        },
-    ])
-    const [database, setDatabase] = useState<IDatabase>({name: "KofaxRPA-KBS-ONT", table: "DIS_Config"})
+    const [items, setItems] = useState<IConfigItem[]>([])
+    const [database, setDatabase] = useState<IDatabase>({name: "", table: ""})
     const [binary, setBinary] = useState("")
 
     useEffect(() => {
+        if (items.length === 0) {
+            return
+        }
         const bin = Buffer.from(JSON.stringify(items)).toString("base64");
         setBinary(bin)
     }, [items])
