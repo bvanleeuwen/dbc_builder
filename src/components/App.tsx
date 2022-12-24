@@ -30,7 +30,11 @@ const App = () => {
 
     // handler for custom hash code input
     function handlePasteBinary(hash: string) {
-        const json = JSON.parse(Buffer.from(hash, "base64").toString())
+        const str = Buffer.from(hash, "base64").toString()
+        if (str.length === 0) {
+            return
+        }
+        const json = JSON.parse(str)
         setDatabase(json.database)
         setItems(json.items)
     }
