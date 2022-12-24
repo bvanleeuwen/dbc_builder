@@ -17,13 +17,18 @@ const App = () => {
         if (items.length === 0) {
             return
         }
-        const bin = Buffer.from(JSON.stringify(items)).toString("base64");
+        const json = {
+            items: items,
+            database: database
+        }
+        const bin = Buffer.from(JSON.stringify(json)).toString("base64");
         setBinary(bin)
-    }, [items])
+    }, [items, database])
 
     function handlePasteBinary(hash: string) {
-        const str = JSON.parse(Buffer.from(hash, "base64").toString())
-        setItems(str)
+        const json = JSON.parse(Buffer.from(hash, "base64").toString())
+        setDatabase(json.database)
+        setItems(json.items)
     }
 
     return (
