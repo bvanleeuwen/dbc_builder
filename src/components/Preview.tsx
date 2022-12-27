@@ -30,12 +30,11 @@ const Preview = ({items, database}: IPreview) => {
                     </span>
                 </div>
                 <code ref={query_ref}>
-                    {`>>Select TOP 1
-                    ${items.map(({id, name, values}, index) =>
-                        index < items.length - 1
-                            ? `\n(SELECT value FROM dbo.${database.table} where parameter='${name}' AND omgeving = '<<+Input.Omgeving+>>') as ${name}`
-                            : `\n(SELECT value FROM dbo.${database.table} where parameter='${name}' AND omgeving = '<<+Input.Omgeving+>>') as ${name},\n`
+                    {`>>SELECT TOP 1
+                    ${items.map(({name}) =>
+                        `\n(SELECT value FROM dbo.${database.table} WHERE parameter='${name}' AND omgeving='<<+Input.Omgeving+>>') AS ${name}`
                     )}
+                    
                     FROM dbo.${database.table}<<`}
                 </code>
             </div>
@@ -58,17 +57,16 @@ const Preview = ({items, database}: IPreview) => {
                         CREATE TABLE dbo.${database.table} (
                             omgeving NVARCHAR(255) NOT NULL,
                             parameter NVARCHAR(255) NOT NULL,
-                            value NVARCHAR(max) NULL,
+                            value NVARCHAR(max) NOT NULL,
                             PRIMARY KEY (omgeving, parameter)
                         );
                         
                     `}
                     {["ONT", "TST", "ACC", "PRD"].map((env, index) =>
                         items.map(({name, values}) =>
-                            `(INSERT INTO dbo.${database.table} VALUES ('${env}', '${name}', ${values[index]});\n`
+                            `(INSERT INTO dbo.${database.table} VALUES ('${env}', '${name}', '${values[index]}');\n`
                         )
                     )}
-                    {`\nFROM dbo.${database.table}`}
                 </code>
             </div>
         </div>
