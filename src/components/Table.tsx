@@ -39,6 +39,18 @@ const Table = ({items, setItems, index}: ITable) => {
         setItems([...items, {id: new Date().getTime(), name: "", values: ["", "", "", ""]}]);
     }
 
+    const handleDuplicate = (id: number, index: number) => {
+        setItems(
+            items.map(item => {
+                if (item.id === id) {
+                    let val = item.values[index];
+                    item.values.fill(val);
+                }
+                return item;
+            }),
+        );
+    }
+
     return (
         <div className={"table"}>
             {items.map(({id, name, values}) =>
@@ -50,6 +62,7 @@ const Table = ({items, setItems, index}: ITable) => {
                     handleNameUpdate={handleNameUpdate}
                     handleValueUpdate={handleValueUpdate}
                     handleDelete={handleDelete}
+                    handleDuplicate={handleDuplicate}
                     key={id}
                 />
             )}

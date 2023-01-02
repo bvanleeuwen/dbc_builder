@@ -9,11 +9,12 @@
 }
 
 .item {
-    min-height: 40px;
+    height: 40px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    column-gap: 5px;
 }
 
 .item_input {
@@ -22,30 +23,38 @@
     color: #d8d4cf;
     font-size: 15px;
     padding: 0 10px;
-    margin-right: 5px;
     background: #1d2021;
     border: none;
 }
 
-.item_delete {
-    height: 100%;
-    width: 40px;
+.item_button {
+    height: 16px;
+    width: 16px;
+    padding: calc((40px - 16px) / 2);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #793030;
     transition: all 100ms ease-in-out;
 }
 
-.item_delete:hover {
+.item_button:hover {
     cursor: pointer;
-    background: #490b0b;
 }
 
-.item_delete img {
-    height: 45%;
-    width: 45%;
-    filter: invert();
+.item_button_duplicate {
+    background: #3e145f;
+}
+
+.item_button_duplicate:hover {
+    background: #240a3a;
+}
+
+.item_delete {
+    background: #793030;
+}
+
+.item_delete:hover {
+    background: #490b0b;
 }
 
 .add {

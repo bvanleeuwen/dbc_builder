@@ -1,9 +1,10 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import './App.css';
 import Header from "./Header";
 import Table from "./Table";
 import {IConfigItem} from "./ConfigItem";
 import Preview, {IDatabase} from "./Preview";
+import {FaCopy} from "react-icons/fa";
 global.Buffer = global.Buffer || require('buffer').Buffer
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         handlePasteBinary(hash)
         return hash
     })
+    const sharecode_ref = useRef<HTMLInputElement>(null)
 
     // update the hash code on item or database change
     useEffect(() => {
@@ -50,36 +52,40 @@ const App = () => {
                     <div className={"inputs"}>
                         <div className={"wrapper"}>
                             <span className={"input_name"}>Database</span>
-                            <span className={"input_name"}>Table</span>
-                            <span className={"input_name"}>Share code</span>
-                        </div>
-                        <form className={"wrapper"}>
                             <input
                                 className={"input_value"}
                                 value={database.name}
                                 placeholder={"Database"}
                                 onChange={(e) => setDatabase({...database, name: e.target.value})}
                             />
+                        </div>
+                        <div className={"wrapper"}>
+                            <span className={"input_name"}>Table</span>
                             <input
                                 className={"input_value"}
                                 value={database.table}
                                 placeholder={"Table"}
                                 onChange={(e) => setDatabase({...database, table: e.target.value})}
                             />
-                            <input
-                                className={"input_value"}
-                                value={binary}
-                                placeholder={"Share code"}
-                                onChange={e => handlePasteBinary(e.target.value)}
-                            />
-                        </form>
+                        </div>
+                        <div className={"wrapper"}>
+                            <span className={"input_name"}>Share code</span>
+                            <div className={"share_code_wrapper"}>
+                                <input
+                                    className={"input_value"}
+                                    value={binary}
+                                    placeholder={"Share code"}
+                                    onChange={e => handlePasteBinary(e.target.value)}
+                                    ref={sharecode_ref}
+                                />
+                                <FaCopy
+                                    className={"share_code_button"}
+                                    onClick={() => navigator.clipboard.writeText(sharecode_ref.current ? sharecode_ref.current.value : "")}
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-            </div>
-            <div className={"attribution"}>
-                <a href="https://www.flaticon.com/free-icons/database" title="database icons">Database icons created by srip - Flaticon</a>
-                <a href="https://www.flaticon.com/free-icons/delete" title="delete icons">Delete icons created by Ilham Fitrotul Hayat - Flaticon</a>
             </div>
         </div>
     );

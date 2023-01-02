@@ -1,10 +1,12 @@
 import './Table.css';
-import image from '../delete.png'
+    import { FaFill, FaTrash } from 'react-icons/fa';
+
 
 export interface IConfigEvents {
     handleNameUpdate: (id: number, name: string) => void
     handleValueUpdate: (id: number, value: string) => void
     handleDelete: (id: number) => void
+    handleDuplicate: (id: number, index: number) => void
     index: number
 }
 
@@ -17,23 +19,27 @@ export interface IConfigItem {
 const Row = (row : IConfigItem & IConfigEvents) => {
 
     return (
-            <form className={"item"}>
-                <input
-                    className={"item_input"}
-                    value={row.name}
-                    onChange={(e) => row.handleNameUpdate(row.id, e.target.value)}
-                />
-                <input
-                    className={"item_input"}
-                    value={row.values[row.index]}
-                    onChange={(e) => row.handleValueUpdate(row.id, e.target.value)}
-                />
-                <span
-                    className={"item_delete"}
-                    onClick={() => row.handleDelete(row.id)}
-                >
-                <img src={image} alt={"trashcan"} />
-            </span>
+        <form className={"item"}>
+            <input
+                className={"item_input"}
+                value={row.name}
+                placeholder={"Name"}
+                onChange={(e) => row.handleNameUpdate(row.id, e.target.value)}
+            />
+            <input
+                className={"item_input"}
+                value={row.values[row.index]}
+                placeholder={"Value"}
+                onChange={(e) => row.handleValueUpdate(row.id, e.target.value)}
+            />
+            <FaFill
+                className={"item_button item_button_duplicate"}
+                onClick={() => row.handleDuplicate(row.id, row.index)}
+            />
+            <FaTrash
+                className={"item_button item_delete"}
+                onClick={() => row.handleDelete(row.id)}
+            />
         </form>
     )
 }

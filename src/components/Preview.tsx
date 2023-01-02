@@ -1,6 +1,7 @@
 import './Preview.css';
 import {IConfigItem} from "./ConfigItem";
 import {useRef} from "react";
+import {FaCopy} from "react-icons/fa";
 
 export interface IDatabase {
     name: string
@@ -22,49 +23,52 @@ const Preview = ({items, database}: IPreview) => {
             <div className={"code_block"}>
                 <div className={"code_block_header"}>
                     <span>QUERY</span>
-                    <span
+                    <FaCopy
                         className={"code_block_button"}
                         onClick={() => navigator.clipboard.writeText(query_ref.current ? query_ref.current.innerText : "")}
-                    >
-                        Copy to Clipboard
-                    </span>
+                    />
                 </div>
                 <code ref={query_ref}>
-                    {`>>SELECT TOP 1
-                    ${items.map(({name}) =>
-                        `\n(SELECT value FROM dbo.${database.table} WHERE parameter='${name}' AND omgeving='<<+Input.Omgeving+>>') AS ${name}`
+                    {`>>SELECT TOP 1\n`}
+                    {items.map(({name, values}, index) =>
+                        // check if at least one value is non-empty and if the name is not empty
+                        values.some(Boolean) && name.length !== 0
+                            // last element should not end with a comma
+                            ? index < items.length - 1
+                                ? `\n(SELECT value FROM dbo.${database.table} WHERE parameter='${name}' AND omgeving='<<+Input.Omgeving+>>') AS ${name},`
+                                : `\n(SELECT value FROM dbo.${database.table} WHERE parameter='${name}' AND omgeving='<<+Input.Omgeving+>>') AS ${name}`
+                            : null
                     )}
-                    
-                    FROM dbo.${database.table}<<`}
+                    {`\n\nFROM dbo.${database.table}<<`}
                 </code>
             </div>
             <div className={"code_block"}>
                 <div className={"code_block_header"}>
                     <span>CONFIG</span>
-                    <span
+                    <FaCopy
                         className={"code_block_button"}
                         onClick={() => navigator.clipboard.writeText(config_ref.current ? config_ref.current.innerText : "")}
-                    >
-                        Copy to Clipboard
-                    </span>
+                    />
                 </div>
                 <code ref={config_ref}>
                     {`  USE [${database.name}];
-                        GO;
                         
                         DROP TABLE dbo.${database.table};
                         
                         CREATE TABLE dbo.${database.table} (
-                            omgeving NVARCHAR(255) NOT NULL,
-                            parameter NVARCHAR(255) NOT NULL,
-                            value NVARCHAR(max) NOT NULL,
+                            omgeving nvarchar(4) NOT NULL,
+                            parameter nvarchar(max) NOT NULL,
+                            value nvarchar(max) NOT NULL,
                             PRIMARY KEY (omgeving, parameter)
                         );
-                        
+
                     `}
                     {["ONT", "TST", "ACC", "PRD"].map((env, index) =>
                         items.map(({name, values}) =>
-                            `(INSERT INTO dbo.${database.table} VALUES ('${env}', '${name}', '${values[index]}');\n`
+                            // check if at least one value is non-empty and if the name is not empty
+                            values.some(Boolean) && name.length !== 0
+                                ? `INSERT INTO dbo.${database.table} VALUES ('${env}', '${name}', '${values[index]}');\n`
+                                : null
                         )
                     )}
                 </code>
