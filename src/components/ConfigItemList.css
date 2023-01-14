@@ -1,0 +1,9 @@
+.table {
+    flex: 1; /* fill remaining space */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 2px;
+    overflow-y: scroll;
+}

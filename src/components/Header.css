@@ -9,13 +9,13 @@
 .tab {
     width: 25%;
     padding: 15px 0;
-    background: #4c4c62;
+    background: #282d35;
     transition: all 100ms ease-in-out;
 }
 
 .tab:hover {
     cursor: pointer;
-    background: #2387FF;
+    background: #00356b;
 }
 
 .tab:first-child {
@@ -27,7 +27,7 @@
 }
 
 .selected {
-    background: #2387FF;
+    background: #00356b;
 }
 
 .tab span {

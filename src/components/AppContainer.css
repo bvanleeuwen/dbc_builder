@@ -1,0 +1,108 @@
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: #131516;
+  color: #d8d4cf;
+}
+
+.App {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.body {
+  height: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  column-gap: 30px;
+}
+
+.container {
+  height: 100%;
+  min-width: 700px;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.default_button {
+  height: 12px;
+  width: 12px;
+  padding: calc((30px - 10px) / 2);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 100ms ease-in-out;
+  cursor: pointer;
+}
+
+.copy_button {
+  background: #4c4c62;
+}
+
+.copy_button:hover {
+  background: #303093;
+}
+
+.paste_button {
+  background: #2e5a47;
+}
+
+.paste_button:hover {
+  background: #499070;
+}
+
+.show_code_button {
+  background: #92750f;
+}
+
+.show_code_button:hover {
+  background: #4d3f09;
+}
+
+.duplicate_button {
+  background: #3e145f;
+}
+
+.duplicate_button:hover {
+  background: #240a3a;
+}
+
+.delete_button {
+  background: #793030;
+}
+
+.delete_button:hover {
+  background: #490b0b;
+}
+
+.add_button {
+  min-height: 40px;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #253e25;
+  transition: all 100ms ease-in-out;
+}
+
+.add_button:hover {
+  cursor: pointer;
+  background: #324f32;
+}
+
+.add_button svg {
+  height: 12px;
+  width: 12px;
+  color: #acacac;
+}

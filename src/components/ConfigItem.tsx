@@ -1,22 +1,15 @@
-import './Table.css';
-    import { FaFill, FaTrash } from 'react-icons/fa';
-
+import './ConfigItem.css';
+import { FaFill, FaTrash } from 'react-icons/fa';
+import {useContext} from "react";
+import {IConfigItem, ItemDispatchContext} from "../context/ItemContext";
 
 export interface IConfigEvents {
-    handleNameUpdate: (id: number, name: string) => void
-    handleValueUpdate: (id: number, value: string) => void
-    handleDelete: (id: number) => void
-    handleDuplicate: (id: number, index: number) => void
     index: number
 }
 
-export interface IConfigItem {
-    id: number
-    name: string
-    values: string[]
-}
-
 const Row = (row : IConfigItem & IConfigEvents) => {
+
+    const dispatch = useContext(ItemDispatchContext)
 
     return (
         <form className={"item"}>
@@ -24,21 +17,38 @@ const Row = (row : IConfigItem & IConfigEvents) => {
                 className={"item_input"}
                 value={row.name}
                 placeholder={"Name"}
-                onChange={(e) => row.handleNameUpdate(row.id, e.target.value)}
+                onChange={(e) => dispatch({
+                    type: 'updateName',
+                    id: row.id,
+                    env: row.index,
+                    value: e.target.value
+                })}
             />
             <input
                 className={"item_input"}
                 value={row.values[row.index]}
                 placeholder={"Value"}
-                onChange={(e) => row.handleValueUpdate(row.id, e.target.value)}
+                onChange={(e) => dispatch({
+                    type: 'updateValue',
+                    id: row.id,
+                    env: row.index,
+                    value: e.target.value
+                })}
             />
             <FaFill
-                className={"item_button item_button_duplicate"}
-                onClick={() => row.handleDuplicate(row.id, row.index)}
+                className={"default_button duplicate_button"}
+                onClick={() => dispatch({
+                    type: 'duplicate',
+                    id: row.id,
+                    env: row.index
+                })}
             />
             <FaTrash
-                className={"item_button item_delete"}
-                onClick={() => row.handleDelete(row.id)}
+                className={"default_button delete_button"}
+                onClick={() => dispatch({
+                    type: 'delete',
+                    id: row.id
+                })}
             />
         </form>
     )

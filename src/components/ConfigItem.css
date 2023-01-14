@@ -1,0 +1,21 @@
+.item {
+    min-height: 40px;
+    height: 40px;
+    padding: 0 5px;
+    width: calc(100% - 10px); /* 2 times the horizontal padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    background: #1d2021;
+}
+
+.item_input {
+    flex: 1; /* fill remaining space */
+    height: 100%;
+    color: #d8d4cf;
+    font-size: 15px;
+    border: none;
+    background: inherit;
+    box-sizing: border-box;
+}
